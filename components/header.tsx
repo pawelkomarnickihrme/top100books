@@ -16,7 +16,7 @@ export default async function Header({
   return (
     <header className="container z-40 items-center justify-center  w-full">
       <div
-        className={`flex h-20 items-center justify-${navType === 'circular' ? 'between' : 'center'} py-6`}
+        className={`flex h-20 items-center justify-${navType === 'circular' ? 'between' : 'center'}`}
       >
         <NavigationComponent {...navigationProps} user={user} />
       </div>
