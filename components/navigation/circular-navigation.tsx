@@ -1,38 +1,34 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import Link from 'next/link';
-import { useSelectedLayoutSegment } from 'next/navigation';
-import { MainNavItem } from 'types';
-import { cn } from '@/lib/utils';
-import { MobileNav } from '@/components/mobile-nav';
-import { Icons } from '@/components/icons';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { ModeToggle } from '@/components/mode-toggle';
-import { siteConfig } from '@/config/site';
+import * as React from 'react'
+import Link from 'next/link'
+import { useSelectedLayoutSegment } from 'next/navigation'
+import { MainNavItem } from 'types'
+import { cn } from '@/lib/utils'
+import { MobileNav } from '@/components/mobile-nav'
+import { Icons } from '@/components/icons'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { ModeToggle } from '@/components/mode-toggle'
+import { siteConfig } from '@/config/site'
 
 interface CircularNavProps {
-  items?: MainNavItem[];
-  children?: React.ReactNode;
-  user?: boolean;
+  items?: MainNavItem[]
+  children?: React.ReactNode
+  user?: boolean
 }
 
-export default function CircularNavigation({
-  items,
-  children,
-  user
-}: CircularNavProps) {
-  const segment = useSelectedLayoutSegment();
-  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
+export default function CircularNavigation({ items, children, user }: CircularNavProps) {
+  const segment = useSelectedLayoutSegment()
+  const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
 
   return (
     <nav className="flex flex-wrap items-center justify-between w-full  ">
-      <div className="flex items-center space-x-2">
+      <Link href="/" className="flex items-center space-x-2">
         <div className="bg-slate-50 dark:bg-slate-900 p-1 rounded-full">
           <Icons.Eclipse />
         </div>
         <span className="text-lg md:text-xl font-bold">{siteConfig.name}</span>
-      </div>
+      </Link>
       {items?.length ? (
         <div className="hidden md:flex space-x-6">
           {items?.map((item, index) => (
@@ -41,10 +37,8 @@ export default function CircularNavigation({
               href={item.disabled ? '#' : item.href}
               className={cn(
                 'text-primary transition-colors hover:text-foreground/80',
-                item.href.startsWith(`/${segment}`)
-                  ? 'text-foreground'
-                  : 'text-foreground/60',
-                item.disabled && 'cursor-not-allowed opacity-80'
+                item.href.startsWith(`/${segment}`) ? 'text-foreground' : 'text-foreground/60',
+                item.disabled && 'cursor-not-allowed opacity-80',
               )}
             >
               {item.title}
@@ -60,15 +54,12 @@ export default function CircularNavigation({
           href={user ? '/dashboard' : '/signin'}
           className={cn(
             buttonVariants({ variant: 'outline', size: 'sm' }),
-            'rounded-2xl p-2 md:p-5 text-xs md:text-sm hidden md:inline-flex'
+            'rounded-2xl p-2 md:p-5 text-xs md:text-sm hidden md:inline-flex',
           )}
         >
           {user ? 'Dashboard' : 'Login'}
         </Link>
-        <button
-          className="md:hidden"
-          onClick={() => setShowMobileMenu(!showMobileMenu)}
-        >
+        <button className="md:hidden" onClick={() => setShowMobileMenu(!showMobileMenu)}>
           {showMobileMenu ? <Icons.close /> : <Icons.Menu />}
           <span className="sr-only">Menu</span>
         </button>
@@ -79,5 +70,5 @@ export default function CircularNavigation({
         </div>
       )}
     </nav>
-  );
+  )
 }

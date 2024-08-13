@@ -1,6 +1,6 @@
-import createMDX from 'fumadocs-mdx/config';
+import createMDX from 'fumadocs-mdx/config'
 
-const withMDX = createMDX();
+const withMDX = createMDX()
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -10,15 +10,19 @@ const config = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
-        port: ''
+        port: '',
       },
       {
         protocol: 'https',
         hostname: 'images-na.ssl-images-amazon.com',
-        port: ''
-      }
-    ]
-  }
-};
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'https://www.goodreads.com',
+      },
+    ],
+  },
+}
 
-export default withMDX(config);
+export default withMDX(config)
